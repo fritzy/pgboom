@@ -1,6 +1,7 @@
 var Boom = require('boom');
 var joi = require('joi');
 var lodash = require('lodash');
+var util = require('util');
 
 var internal = joi.object({
     getNull404: joi.boolean(),

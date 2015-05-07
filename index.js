@@ -37,7 +37,7 @@ exports.register = function (server, options, next) {
     
     var regErr = internal.validate(options);
     if (regErr.error) {
-        return next(regErr);
+        throw regErr;
     }
     opts = options;
     condition = lodash.assign(condition, opts.extendConditions);
@@ -47,14 +47,14 @@ exports.register = function (server, options, next) {
         var source = request.response;
         var cat;
         if (request.method == 'get' && source.source === null && opts.getNull404) {
-            return reply(Boom.notFound());
+            throw Boom.notFound();
         } else if (source !== null && typeof source === 'object' && source.severity === 'ERROR') {
             if (source.hasOwnProperty('code') && condition.hasOwnProperty(source.code)) {
-                return reply(condition[source.code](source));
+                throw condition[source.code](source);
             } else if (source.hasOwnPropert('code') && typeof source.code === 'string' && category.hasOwnProperty(source.code.substr(0, 2))) {
-                return reply(category[source.code.substr(0, 2)](source));
+                throw category[source.code.substr(0, 2)](source);
             } else {
-                return reply(Boom.badImplementation(source.toString()));
+                throw Boom.badImplementation(source.toString());
             }
         }
         reply.continue();

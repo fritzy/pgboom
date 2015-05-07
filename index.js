@@ -51,7 +51,7 @@ exports.register = function (server, options, next) {
         } else if (source !== null && typeof source === 'object' && source.severity === 'ERROR') {
             if (source.hasOwnProperty('code') && condition.hasOwnProperty(source.code)) {
                 throw condition[source.code](source);
-            } else if (source.hasOwnPropert('code') && typeof source.code === 'string' && category.hasOwnProperty(source.code.substr(0, 2))) {
+            } else if (source.hasOwnProperty('code') && typeof source.code === 'string' && category.hasOwnProperty(source.code.substr(0, 2))) {
                 throw category[source.code.substr(0, 2)](source);
             } else {
                 throw Boom.badImplementation(source.toString());

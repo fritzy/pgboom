@@ -22,6 +22,9 @@ var category = {
     '08': function (err) {
         return Boom.serverTimeout('Database unavailable');
     },
+    '53': function (err) {
+        return Boom.serverTimeout('Database unavailable');
+    },
     '22': function (err) {
         return Boom.badData(err.toString());
     },

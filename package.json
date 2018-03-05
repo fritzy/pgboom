@@ -1,6 +1,6 @@
 {
   "name": "pgboom",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "boom": "^2.7.1",
-    "joi": "^6.4.1",
-    "lodash": "^3.8.0"
+    "joi": "^6.4.1"
   }
 }
